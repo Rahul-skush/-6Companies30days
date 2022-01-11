@@ -1,0 +1,39 @@
+class Solution
+{   
+    public: 
+    //Function to return a list of integers denoting spiral traversal of matrix.
+    vector<int> v;
+    vector<int> spirallyTraverse(vector<vector<int> > matrix, int r, int c) 
+    {
+        int cnt = r*c;
+        for(int k=0;k<=r/2 && cnt;k++)
+        {
+            find(k, matrix, r, c, cnt);
+        }
+        
+        return v;
+    }
+    
+    void find(int k, vector<vector<int> > mat, int n, int m, int &cnt)
+    {
+        
+        for(int i=k;i<m-k && cnt;i++)
+        {
+            v.push_back(mat[k][i]); cnt--;
+            if(cnt==0) return ;
+        }
+        
+        for(int i=k+1;i<n-k && cnt;i++)
+        {
+            v.push_back(mat[i][m-k-1]); cnt--;
+        }
+        
+        for(int i=m-k-2;i>=k && cnt;i--)
+        {
+            v.push_back(mat[n-k-1][i]); cnt--;
+        }
+        
+        for(int i=n-k-2;i>k && cnt;i--)
+        {v.push_back(mat[i][k]); cnt--;}
+    }
+};
